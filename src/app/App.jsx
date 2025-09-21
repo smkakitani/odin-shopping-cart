@@ -11,6 +11,7 @@ const App = () => {
   // const { tab } = useParams();
   return (
     <>
+      <h1>My shopping cart</h1>
       <NavBar />
       <p>
         Hi
