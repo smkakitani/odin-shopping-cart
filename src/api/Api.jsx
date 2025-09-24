@@ -38,5 +38,8 @@ const useFakeStore = () => {
     fetchData();
   }, []);
 
+  console.log(item);
   return { item, loading, error };
 };
+
+export default useFakeStore;
