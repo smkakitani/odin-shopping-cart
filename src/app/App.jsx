@@ -1,16 +1,17 @@
 import { Link, NavLink, Outlet } from 'react-router';
 // import { useParams } from 'react-router';
-import Home from '../components/Home';
-import Store from '../components/Store';
-import Cart from '../components/Cart';
+// import Home from '../components/Home';
+// import Store from '../components/Store';
+// import Cart from '../components/Cart';
 
-import '../styles/App.css';
 import NavBar from '../components/NavBar';
 import { useState } from 'react';
 
+import '../styles/App.css';
+
 
 const mockData = {
-  id: crypto.randomUUID(),
+  id: 666/* crypto.randomUUID() */,
   title: 'Mock title',
   price: 6.66,
   description: 'mocking some description for API data',
@@ -19,15 +20,53 @@ const mockData = {
   quantity: 0,
 };
 
+const createTestingProducts = () => {
+  const initialProducts = [];
+  for (let i = 0; i < 9; i++) {
+    initialProducts.push({
+      ...mockData,
+      id: crypto.randomUUID(),
+    });
+  }
+
+  return initialProducts;
+};
 
 
 const App = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(createTestingProducts);
 
-  const handleProducts = (obj) => {
-    return 
+  // const handleProducts = (obj) => {
+  //   return 
+  // };
+  
+  function onDecreaseProduct(productId) {
+    setProducts(products.map(p => {
+      if (p.id === productId) {
+        if(p.quantity === 0) {
+          return p;
+        } else {
+          p.quantity--
+          console.log(p.quantity);
+          return p;
+        }
+        
+      } else {
+        return p;
+      }
+    }));
   };
 
+  function onIncreaseProduct(productId) {
+    setProducts(products.map(p => {
+      if (p.id === productId) {
+        p.quantity++
+        return p;
+      } else {
+        return p;
+      }
+    }));
+  };
 
   return (
     <>
@@ -37,7 +76,7 @@ const App = () => {
         Hi
       </p>
       <main>
-        <Outlet />
+        <Outlet context={[products, onDecreaseProduct, onIncreaseProduct]}/>
       </main>
     </>
   )

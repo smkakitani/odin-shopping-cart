@@ -1,29 +1,20 @@
-import { Link } from "react-router";
-import useFakeStore from "../api/Api";
+import { Link, useOutletContext } from "react-router";
+// import useFakeStore from "../api/Api";
 import PropTypes from "prop-types";
-
-
-const mockData = {
-  id: crypto.randomUUID(),
-  title: 'Mock title',
-  price: 6.66,
-  description: 'mocking some description for API data',
-  category: 'am I using it? @_@',
-  image: 'http://example.com',
-  quantity: 0,
-};
-
 
 
 
 const Store = ({ 
-  products,
-  onDecreaseProduct,
-  onIncreaseProduct,
+  /* products, */
+  /* onDecreaseProduct, */
+  /* onIncreaseProduct, */
   handleCartProduct,
 
 }) => {
-  useFakeStore();
+  const [ products, onDecreaseProduct, onIncreaseProduct ] = useOutletContext();
+  
+
+  // useFakeStore();
   return (
     <div>
       <h1>Store page</h1>
@@ -47,7 +38,7 @@ const Store = ({
 };
 
 Store.propTypes = {
-  products: PropTypes.array,
+  // products: PropTypes.array,
 }
 
 const ItemCard = ({ 
@@ -66,10 +57,10 @@ const ItemCard = ({
       />
       <p className="product-title">
         {product.title}
-        </p>
+      </p>
       <p className="product-desc">
         {product.description}
-        </p>
+      </p>
       <div>
         <p>{product.quantity}</p>
         <button type="button" onClick={() => onDecrease(product.id)}>-</button>
