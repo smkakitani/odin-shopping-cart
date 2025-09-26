@@ -35,10 +35,12 @@ const createTestingProducts = () => {
 
 const App = () => {
   const [products, setProducts] = useState(createTestingProducts);
+  const [cart, setCart] = useState({
+    total: 0,
+    items: [],
+  });
 
-  // const handleProducts = (obj) => {
-  //   return 
-  // };
+
   
   function onDecreaseProduct(productId) {
     setProducts(products.map(p => {
@@ -49,8 +51,7 @@ const App = () => {
           p.quantity--
           console.log(p.quantity);
           return p;
-        }
-        
+        }        
       } else {
         return p;
       }
@@ -59,6 +60,7 @@ const App = () => {
 
   function onIncreaseProduct(productId) {
     setProducts(products.map(p => {
+
       if (p.id === productId) {
         p.quantity++
         return p;
@@ -68,6 +70,21 @@ const App = () => {
     }));
   };
 
+  function handleCartProduct(productId) {
+    products.map(product => {
+      if (product.id === productId) {
+        const result = product.quantity * product.price;
+        setCart({
+          total: cart.total + result,
+          items: [
+            ...cart.items,
+            product
+          ]
+        });
+      }
+    });
+  }
+
   return (
     <>
       <h1>My shopping cart</h1>
@@ -76,7 +93,14 @@ const App = () => {
         Hi
       </p>
       <main>
-        <Outlet context={[products, onDecreaseProduct, onIncreaseProduct]}/>
+        <Outlet context={[ 
+          products, 
+          onDecreaseProduct, 
+          onIncreaseProduct, 
+          handleCartProduct, 
+          cart, 
+          ]}
+        />
       </main>
     </>
   )

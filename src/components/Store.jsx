@@ -8,10 +8,15 @@ const Store = ({
   /* products, */
   /* onDecreaseProduct, */
   /* onIncreaseProduct, */
-  handleCartProduct,
+  /* handleCartProduct, */
 
 }) => {
-  const [ products, onDecreaseProduct, onIncreaseProduct ] = useOutletContext();
+  const [ 
+    products, 
+    onDecreaseProduct, 
+    onIncreaseProduct, 
+    handleCartProduct, 
+  ] = useOutletContext();
   
 
   // useFakeStore();
@@ -38,7 +43,10 @@ const Store = ({
 };
 
 Store.propTypes = {
-  // products: PropTypes.array,
+  products: PropTypes.array,
+  onDecrease: PropTypes.func, 
+  onIncrease: PropTypes.func, 
+  handleCart: PropTypes.func, 
 }
 
 const ItemCard = ({ 
@@ -49,25 +57,25 @@ const ItemCard = ({
 }) => {
   
   return (
-    <div className="card-container">
-      <img 
-        src={product.img} 
-        alt={product.title} 
+    <article className="product-item">
+      <img
+        src={product.image}
+        alt={product.title}
         sizes="100px"
       />
-      <p className="product-title">
+      <h4 className="product-title">
         {product.title}
+      </h4>
+      <p className="product-price">
+        ${product.price}
       </p>
-      <p className="product-desc">
-        {product.description}
-      </p>
-      <div>
-        <p>{product.quantity}</p>
+      <div>        
         <button type="button" onClick={() => onDecrease(product.id)}>-</button>
+        <p>{product.quantity}</p>
         <button type="button" onClick={() => onIncrease(product.id)}>+</button>
-        <button type="button" onClick={handleCart}>add to cart</button>
+        <button type="button" onClick={() => handleCart(product.id)}>add to cart</button>
       </div>
-    </div>
+    </article>
   );
 };
 

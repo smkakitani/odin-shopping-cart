@@ -10,7 +10,10 @@ const NavBar = () => {
           {menuLink.map((item) => (
             <li key={item}>
               <NavLink 
-              to={item}>
+              to={item}
+              onMouseOver={() => console.log('mouse on' + item)}
+              
+              >
                 {item}
               </NavLink>
             </li>
