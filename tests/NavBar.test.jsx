@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { logRoles, render, screen, within } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import userEvent from "@testing-library/user-event";
 
@@ -55,7 +55,57 @@ describe('NavBar component', () => {
     expect(linkCart).not.toHaveClass(/active/);
     expect(linkHome).not.toHaveClass(/active/);
     expect(linkStore).toHaveClass(/active/);
-    screen.debug();
   });
 });
 
+describe("Cart view", () => {
+  it("show cart onMouseOver", async () => {
+    const router = createMemoryRouter(routes);
+    const user = userEvent.setup();
+    
+    render(<RouterProvider router={router}/>);
+
+    const cart = screen.getByRole('link', { name: /cart/i });
+
+    await user.hover(cart);
+
+    const myCart = screen.getByRole('heading', { name: /my cart/i });
+
+    expect(myCart).toBeInTheDocument();
+    
+    await user.unhover(cart);
+    
+    expect(myCart).not.toBeInTheDocument();
+  });
+
+  it("should have some item on cart view", async () => {
+    const router = createMemoryRouter(routes, { 
+      initialEntries: ["/", "/store"], 
+      initialIndex: 1, 
+    });
+
+    const user = userEvent.setup();
+    
+    render(<RouterProvider router={router}/>);
+
+    const increaseItem = screen.getAllByRole('button', { name: '+' })[0];
+
+    await user.click(increaseItem);
+    await user.click(increaseItem);
+    // logRoles(increaseItem);
+
+    const any = screen.queryAllByText('2');
+    expect(any).toHaveLength(1);
+    
+    const addToCartBtn = screen.getAllByRole('button', { name: /add to cart/i })[0];
+    const showCart = screen.getByRole('link', { name: /cart/i });
+
+    await user.click(addToCartBtn);
+    await user.hover(showCart);
+
+    const cartView = screen.getByRole('dialog');
+    const cartItems = within(cartView).getAllByRole('listitem');
+
+    expect(cartItems).toHaveLength(1);
+  });
+});

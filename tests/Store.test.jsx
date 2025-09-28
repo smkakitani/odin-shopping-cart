@@ -82,5 +82,9 @@ describe("Store component", () => {
     expect(productItem).toHaveLength(1);
     expect(productItemOther.length).toBe(8);
   });
+
+  it("teeeeesssst", () => {
+    
+  });
 });
 

@@ -1,12 +1,13 @@
-import { Link, useOutletContext } from "react-router";
+import PropTypes from "prop-types";
+import { Link, /* useOutletContext */ } from "react-router";
 
 
 
-const CartOnHover = () => {
-  const [ cart ] = useOutletContext();
+const CartView = ({ cart }) => {
+  // const [ ...cart ] = useOutletContext();
 
   return (
-    <dialog id="cart-view">
+    <dialog id="cart-view" style={{ display: 'flex' }}>
       <h3>My cart</h3>
       <ul>
         {cart.items.map(item => (
@@ -24,14 +25,21 @@ const CartOnHover = () => {
   );
 };
 
+CartView.propTypes = {
+  cart: PropTypes.object,
+}
+
+
+
+
 const Cart = () => {
   return (
     <div>
-      <h1>Caart</h1>
+      <h1>Cart</h1>
       <Link to="/">Click here to go back</Link>
 
     </div>
   );
 };
 
-export default Cart;
+export { Cart, CartView };

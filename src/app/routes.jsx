@@ -2,7 +2,7 @@ import App from "./App";
 import ErrorPage from "../components/ErrorPage";
 // import NavBar from "../components/NavBar";
 import Home from "../components/Home";
-import Cart from "../components/Cart";
+import { Cart } from "../components/Cart";
 import Store from "../components/Store";
 
 

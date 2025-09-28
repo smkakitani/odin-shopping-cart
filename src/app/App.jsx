@@ -1,13 +1,14 @@
-import { Link, NavLink, Outlet } from 'react-router';
-// import { useParams } from 'react-router';
-// import Home from '../components/Home';
-// import Store from '../components/Store';
-// import Cart from '../components/Cart';
-
-import NavBar from '../components/NavBar';
+import { Outlet } from 'react-router';
+import { createPortal } from 'react-dom';
 import { useState } from 'react';
 
+// Component
+import NavBar from '../components/NavBar';
+import { CartView } from '../components/Cart';
+
+// Style
 import '../styles/App.css';
+
 
 
 const mockData = {
@@ -33,14 +34,22 @@ const createTestingProducts = () => {
 };
 
 
+// Main App
 const App = () => {
   const [products, setProducts] = useState(createTestingProducts);
+  const [showCart, setShowCart] = useState(false); // state for CartView
   const [cart, setCart] = useState({
     total: 0,
     items: [],
   });
 
+  function handleMouseOverCart() {
+    setShowCart(true);
+  };
 
+  function handleMouseOutCart() {
+    setShowCart(false);
+  };
   
   function onDecreaseProduct(productId) {
     setProducts(products.map(p => {
@@ -88,7 +97,14 @@ const App = () => {
   return (
     <>
       <h1>My shopping cart</h1>
-      <NavBar />
+      <NavBar 
+        onMouseOverCart={handleMouseOverCart} 
+        onMouseOutCart={handleMouseOutCart}
+      />
+      {showCart && createPortal(
+        <CartView cart={cart}/>,
+        document.body
+      )}
       <p>
         Hi
       </p>
@@ -104,6 +120,6 @@ const App = () => {
       </main>
     </>
   )
-}
+};
 
 export default App;

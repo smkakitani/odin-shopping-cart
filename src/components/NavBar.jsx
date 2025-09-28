@@ -1,29 +1,40 @@
-import { Link, NavLink } from 'react-router';
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router';
 
 
-const NavBar = () => {
+const NavBar = ({ onMouseOverCart, onMouseOutCart }) => {
   const menuLink = [ 'home', 'store', 'cart' ];
 
   return (
     <nav>
         <menu>
           {menuLink.map((item) => (
-            <li key={item}>
-              <NavLink 
-              to={item}
-              onMouseOver={() => console.log('mouse on' + item)}
-              
-              >
-                {item}
-              </NavLink>
+            <li key={item} >
+              {item === 'cart' ? (
+                <button>
+                  <NavLink
+                    to={item}
+                    onMouseOver={onMouseOverCart}
+                    onMouseOut={onMouseOutCart}
+                  >
+                    {item}
+                  </NavLink>
+                </button>
+              ) : (
+                <NavLink to={item}>
+                  {item}
+                </NavLink>
+              )}              
             </li>
           ))}
-          {/* <NavLink to="home">Home</NavLink>
-          <NavLink to="store">Store</NavLink>
-          <NavLink to="cart">Cart</NavLink> */}
-        </menu>
+        </menu>        
     </nav>
   );
 };
+
+NavBar.propTypes = {
+  onMouseOverCart: PropTypes.func,
+  onMouseOutCart: PropTypes.func,
+}
 
 export default NavBar;
