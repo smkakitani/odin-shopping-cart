@@ -94,6 +94,23 @@ const App = () => {
     });
   }
 
+  function handleRemoveFromCart(productId) {
+    // Search for item's ID to be removed from cart and read it's total price
+    let value;
+
+    for (let item of cart.items) {
+      if (item.id === productId) {
+        value = item.quantity * item.price;
+      }
+    }
+
+    // Subtract item's total price from cart and remove it
+    setCart({
+      total: cart.total - value,
+      items: cart.items.filter((item) => item.id !== productId),
+    });
+  }
+
   return (
     <>
       <h1>My shopping cart</h1>
@@ -109,13 +126,14 @@ const App = () => {
         Hi
       </p>
       <main>
-        <Outlet context={[ 
+        <Outlet context={{ 
           products, 
           onDecreaseProduct, 
           onIncreaseProduct, 
           handleCartProduct, 
+          handleRemoveFromCart,
           cart, 
-          ]}
+        }}
         />
       </main>
     </>

@@ -11,12 +11,12 @@ const Store = ({
   /* handleCartProduct, */
 
 }) => {
-  const [ 
+  const { 
     products, 
     onDecreaseProduct, 
     onIncreaseProduct, 
     handleCartProduct, 
-  ] = useOutletContext();
+  } = useOutletContext();
   
 
   // useFakeStore();
