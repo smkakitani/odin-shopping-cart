@@ -1,44 +1,43 @@
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 import { Link, useOutletContext } from "react-router";
 
 
 
-const CartView = ({ cart }) => {
+const CartView = ({ cart, cartTotal }) => {
   return (
     <dialog id="cart-view" style={{ display: 'flex' }}>
       <h3>My cart</h3>
       <ul>
-        {cart.items.map(item => (
+        {cart.map(item => (
           <li key={item.id}>
             <article>
               <img sizes="100px" src={item.image} alt={item.title} />
               <h4>{item.title}</h4>
-              <p>$ {item.price}</p>
+              <p>{item.price?.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>
             </article>
           </li>
         ))}
       </ul>
-        <p>Total: {cart.total}</p>
+        <p>Total: {cartTotal.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>
     </dialog>
   );
 };
 
 CartView.propTypes = {
-  cart: PropTypes.object,
+  cart: PropTypes.array,
 }
 
 
 
-const Cart = () => {
+const Cart = (/* { cart } */) => {
   const { 
     onDecreaseProduct: onDecrease,
     onIncreaseProduct: onIncrease,
     handleRemoveFromCart: onRemoveItem,
     cart,
+    cartTotal,
   } = useOutletContext();
-
-  // const onDecrease = onDecreaseProduct;
-  // const onIncrease = onIncreaseProduct;
 
   return (
     <div>
@@ -48,7 +47,7 @@ const Cart = () => {
         <h2>my shopping cart</h2>
         <div>
           <ul>
-            {cart.items.map((item) => (
+            {cart.map((item) => (
               <li key={item.id}>
                 <article>
                   <img 
@@ -60,7 +59,7 @@ const Cart = () => {
                     {item.title}
                   </h4>
                   <p className="product-price">
-                    $ {item.price}
+                    {item.price?.toLocaleString("en-US", { style: "currency", currency: "USD" })}
                   </p>
                   <div>
                     <button type="button" onClick={() => onDecrease(item.id)}>-</button>
@@ -72,6 +71,9 @@ const Cart = () => {
               </li>
             ))}
           </ul>
+          <p className="cart-total">
+            Estimated total: {cartTotal?.toLocaleString("en-US", { style: "currency", currency: "USD" })}
+          </p>
         </div>
       </div>
     </div>
@@ -79,7 +81,8 @@ const Cart = () => {
 };
 
 Cart.propTypes = {
-  cart: PropTypes.object,
+  cart: PropTypes.array,
+  cartTotal: PropTypes.number,
 }
 
 export { Cart, CartView };

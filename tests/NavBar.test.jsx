@@ -83,7 +83,6 @@ describe("Cart view", () => {
       initialEntries: ["/", "/store"], 
       initialIndex: 1, 
     });
-
     const user = userEvent.setup();
     
     render(<RouterProvider router={router}/>);
@@ -92,9 +91,8 @@ describe("Cart view", () => {
 
     await user.click(increaseItem);
     await user.click(increaseItem);
-    // logRoles(increaseItem);
 
-    const any = screen.queryAllByText('2');
+    const any = screen.queryAllByText('3');
     expect(any).toHaveLength(1);
     
     const addToCartBtn = screen.getAllByRole('button', { name: /add to cart/i })[0];
@@ -107,5 +105,6 @@ describe("Cart view", () => {
     const cartItems = within(cartView).getAllByRole('listitem');
 
     expect(cartItems).toHaveLength(1);
+    
   });
 });

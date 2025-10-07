@@ -15,7 +15,7 @@ const Store = ({
     products, 
     onDecreaseProduct, 
     onIncreaseProduct, 
-    handleCartProduct, 
+    handleAddToCart, 
   } = useOutletContext();
   
 
@@ -32,7 +32,7 @@ const Store = ({
                 product={product}
                 onDecrease={onDecreaseProduct}
                 onIncrease={onIncreaseProduct}
-                handleCart={handleCartProduct}              
+                handleCart={handleAddToCart}              
               />
             </li>
           ))}
@@ -67,7 +67,7 @@ const ItemCard = ({
         {product.title}
       </h4>
       <p className="product-price">
-        ${product.price}
+        {product.price.toLocaleString("en-US", { style: "currency", currency: "USD" })}
       </p>
       <div>        
         <button type="button" onClick={() => onDecrease(product.id)}>-</button>

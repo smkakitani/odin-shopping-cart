@@ -11,19 +11,20 @@ const NavBar = ({ onMouseOverCart, onMouseOutCart }) => {
           {menuLink.map((item) => (
             <li key={item} >
               {item === 'cart' ? (
-                <button>
-                  <NavLink
-                    to={item}
-                    onMouseOver={onMouseOverCart}
-                    onMouseOut={onMouseOutCart}
-                  >
+                <button
+                  onMouseOver={onMouseOverCart}
+                  onMouseOut={onMouseOutCart}
+                >
+                  <NavLink to={item}>
                     {item}
                   </NavLink>
                 </button>
               ) : (
-                <NavLink to={item}>
-                  {item}
-                </NavLink>
+                <button>
+                  <NavLink to={item}>
+                    {item}
+                  </NavLink>
+                </button>
               )}              
             </li>
           ))}

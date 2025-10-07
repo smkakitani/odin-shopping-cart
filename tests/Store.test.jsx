@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { logRoles, render, screen, within } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import userEvent from "@testing-library/user-event";
 
@@ -35,10 +35,10 @@ describe("Store component", () => {
     });
 
     render(<RouterProvider router={router}/>);
-    // screen.debug();
-    // const board = screen.getByRole('generic')
 
-    expect(screen.getAllByText('Mock title')).toHaveLength(9);
+    const productTitle = screen.getAllByText(/mock title/i);
+
+    expect(productTitle).toHaveLength(9);
   });
 
   it("product's quantity should not be less than zero", async () => {
@@ -50,14 +50,16 @@ describe("Store component", () => {
 
     render(<RouterProvider router={router}/>);
     
-    const decreaseButton = screen.getAllByRole('button', { name: '-'});    
+    const decreaseButton = screen.getAllByRole('button', { name: '-'})[0];    
 
-    await user.click(decreaseButton[0]);
+    await user.click(decreaseButton);
+    await user.click(decreaseButton);
+    await user.click(decreaseButton);
 
     const itemCard = screen.getAllByRole('list');
-    const productItem = within(itemCard[1]).queryByText('1');
-
-    expect(productItem).toBeNull();
+    const productItem = within(itemCard[1]).getAllByText('0');
+    
+    expect(productItem).toHaveLength(1);
   });
 
   it("product's quantity should be more than zero", async () => {
@@ -69,22 +71,18 @@ describe("Store component", () => {
 
     render(<RouterProvider router={router}/>);
 
-    const increaseButton = screen.getAllByRole('button', { name: '+'});    
+    const increaseButton = screen.getAllByRole('button', { name: '+'})[0];    
 
-    await user.click(increaseButton[0]);
-    await user.click(increaseButton[0]);
+    await user.click(increaseButton);
+    await user.click(increaseButton);
     
 
     const itemCard = screen.getAllByRole('list');
-    const productItem = within(itemCard[1]).getAllByText('2');
-    const productItemOther = within(itemCard[1]).getAllByText('0');
+    const productItem = within(itemCard[1]).getAllByText('3');
+    const productItemOther = within(itemCard[1]).getAllByText('1');
 
     expect(productItem).toHaveLength(1);
     expect(productItemOther.length).toBe(8);
-  });
-
-  it("teeeeesssst", () => {
-    
   });
 });
 

@@ -18,7 +18,8 @@ const mockData = {
   description: 'mocking some description for API data',
   category: 'am I using it? @_@',
   image: 'http://example.com',
-  quantity: 0,
+  quantity: 1,
+  // total: this.price * this.quantity,
 };
 
 const createTestingProducts = () => {
@@ -27,6 +28,7 @@ const createTestingProducts = () => {
     initialProducts.push({
       ...mockData,
       id: crypto.randomUUID(),
+      title: `${i} - Mock title`,
     });
   }
 
@@ -38,17 +40,28 @@ const createTestingProducts = () => {
 const App = () => {
   const [products, setProducts] = useState(createTestingProducts);
   const [showCart, setShowCart] = useState(false); // state for CartView
-  const [cart, setCart] = useState({
-    total: 0,
-    items: [],
+  // const [cart, setCart] = useState({
+  //   total: 0,
+  //   items: [],
+  // });
+  const [cart, setCart] = useState([]);
+  let cartTotal = 0;
+  
+  cart.forEach(item => {
+    const value = item.price * item.quantity;
+    const roundValue = (Math.round(value * 100)/100)
+    cartTotal += roundValue;
+
   });
 
   function handleMouseOverCart() {
     setShowCart(true);
+    // console.log('mouse over');
   };
 
   function handleMouseOutCart() {
     setShowCart(false);
+    // console.log('mouse out');
   };
   
   function onDecreaseProduct(productId) {
@@ -58,7 +71,6 @@ const App = () => {
           return p;
         } else {
           p.quantity--
-          console.log(p.quantity);
           return p;
         }        
       } else {
@@ -68,48 +80,82 @@ const App = () => {
   };
 
   function onIncreaseProduct(productId) {
-    setProducts(products.map(p => {
-
-      if (p.id === productId) {
-        p.quantity++
-        return p;
+    const updatedProducts = products.map((product) => {
+      if (product.id === productId) {
+        product.quantity++;
+        // console.log(`total = ${product.price * product.quantity}`);
+        return product;
       } else {
-        return p;
+        return product;
       }
-    }));
+    });
+
+    setProducts(updatedProducts);
+    // updateCartTotal();
+    // console.log(updatedProducts.total);
+
+    // setProducts(products.map(p => {
+
+    //   if (p.id === productId) {
+    //     p.quantity++
+    //     return p;
+    //   } else {
+    //     return p;
+    //   }
+    // }));
   };
 
-  function handleCartProduct(productId) {
-    products.map(product => {
-      if (product.id === productId) {
-        const result = product.quantity * product.price;
-        setCart({
-          total: cart.total + result,
-          items: [
-            ...cart.items,
-            product
-          ]
-        });
+  function handleAddToCart(productId) {
+    // Look if product is already in cart
+    // cart.forEach(item => {
+    //   if (item.id === productId)
+    // });
+
+    products.forEach(product => {
+      if (product.id === productId && product.quantity > 0) {
+        // Look if product is already in cart
+        // cart.forEach(item => {
+        //   if (item.id === product.id) {
+
+        //   }
+        // });
+        setCart([
+          ...cart,
+          product
+        ]);
       }
     });
   }
 
   function handleRemoveFromCart(productId) {
-    // Search for item's ID to be removed from cart and read it's total price
-    let value;
-
-    for (let item of cart.items) {
-      if (item.id === productId) {
-        value = item.quantity * item.price;
-      }
-    }
-
-    // Subtract item's total price from cart and remove it
-    setCart({
-      total: cart.total - value,
-      items: cart.items.filter((item) => item.id !== productId),
-    });
+    // Search for item's ID to be removed from cart
+    // for (let item of cart.items) {
+    //   if (item.id === productId) {
+    //     value = item.quantity * item.price;
+    //   }
+    // }
+    setCart(cart.filter(item => item.id !== productId));
   }
+
+  // function updateCartTotal() {
+  //   if (cart.items.length >= 1) {
+  //     let newTotal = 0;
+
+  //     cart.items.forEach((item) => {
+  //       newTotal += item.price * item.quantity;
+  //       console.log()
+  //     });
+
+  //     setCart(cart => {
+  //       return {
+  //         total: newTotal,
+  //         ...cart,
+  //       }
+  //     });     
+
+  //     console.log(newTotal, cart);
+  //   }    
+  // }
 
   return (
     <>
@@ -119,7 +165,7 @@ const App = () => {
         onMouseOutCart={handleMouseOutCart}
       />
       {showCart && createPortal(
-        <CartView cart={cart}/>,
+        <CartView cart={cart} cartTotal={cartTotal}/>,
         document.body
       )}
       <p>
@@ -130,9 +176,10 @@ const App = () => {
           products, 
           onDecreaseProduct, 
           onIncreaseProduct, 
-          handleCartProduct, 
+          handleAddToCart, 
           handleRemoveFromCart,
           cart, 
+          cartTotal,
         }}
         />
       </main>
