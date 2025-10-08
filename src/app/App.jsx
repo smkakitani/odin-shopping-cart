@@ -9,6 +9,9 @@ import { CartView } from '../components/Cart';
 // Style
 import '../styles/App.css';
 
+// API
+import useFakeStore from "../api/Api";
+
 
 
 const mockData = {
@@ -38,12 +41,9 @@ const createTestingProducts = () => {
 
 // Main App
 const App = () => {
-  const [products, setProducts] = useState(createTestingProducts);
+  const [products, setProducts] = useState(createTestingProducts /* item */);
   const [showCart, setShowCart] = useState(false); // state for CartView
-  // const [cart, setCart] = useState({
-  //   total: 0,
-  //   items: [],
-  // });
+  // const { item, loading, error } = useFakeStore();
   const [cart, setCart] = useState([]);
   let cartTotal = 0;
   
@@ -83,7 +83,6 @@ const App = () => {
     const updatedProducts = products.map((product) => {
       if (product.id === productId) {
         product.quantity++;
-        // console.log(`total = ${product.price * product.quantity}`);
         return product;
       } else {
         return product;
@@ -91,71 +90,27 @@ const App = () => {
     });
 
     setProducts(updatedProducts);
-    // updateCartTotal();
-    // console.log(updatedProducts.total);
-
-    // setProducts(products.map(p => {
-
-    //   if (p.id === productId) {
-    //     p.quantity++
-    //     return p;
-    //   } else {
-    //     return p;
-    //   }
-    // }));
   };
 
   function handleAddToCart(productId) {
     // Look if product is already in cart
-    // cart.forEach(item => {
-    //   if (item.id === productId)
-    // });
+    const hasProduct = cart.some(item => item.id === productId);
 
-    products.forEach(product => {
-      if (product.id === productId && product.quantity > 0) {
-        // Look if product is already in cart
-        // cart.forEach(item => {
-        //   if (item.id === product.id) {
-
-        //   }
-        // });
-        setCart([
-          ...cart,
-          product
-        ]);
-      }
-    });
+    if (!hasProduct) {
+      products.forEach(product => {
+        if (product.id === productId && product.quantity > 0) {
+          setCart([
+            ...cart,
+            product
+          ]);
+        }
+      });
+    }    
   }
 
   function handleRemoveFromCart(productId) {
-    // Search for item's ID to be removed from cart
-    // for (let item of cart.items) {
-    //   if (item.id === productId) {
-    //     value = item.quantity * item.price;
-    //   }
-    // }
     setCart(cart.filter(item => item.id !== productId));
   }
-
-  // function updateCartTotal() {
-  //   if (cart.items.length >= 1) {
-  //     let newTotal = 0;
-
-  //     cart.items.forEach((item) => {
-  //       newTotal += item.price * item.quantity;
-  //       console.log()
-  //     });
-
-  //     setCart(cart => {
-  //       return {
-  //         total: newTotal,
-  //         ...cart,
-  //       }
-  //     });     
-
-  //     console.log(newTotal, cart);
-  //   }    
-  // }
 
   return (
     <>

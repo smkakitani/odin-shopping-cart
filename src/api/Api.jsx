@@ -25,7 +25,20 @@ const useFakeStore = () => {
           throw new Error(`HTTP error: Status ${response.status}`);
         }
         let data = await response.json();
-        setItem(data);
+
+        const updatedData = data.slice(0, 10).map(item => {
+          return {
+            id: crypto.randomUUID(),
+            title: item.title,
+            price: item.price,
+            description: item.description,
+            /* category: item.category, */
+            image: item.image,
+            quantity: 1,
+          }
+        });
+
+        setItem(updatedData);
         setError(null);
       } catch (error) {
         setError(error.message);
