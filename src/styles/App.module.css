@@ -5,21 +5,23 @@
   text-align: center;
   min-height: 100vh;
 
-  color: white;
-  
-  
+  color: white;  
 
   display: grid;
   grid-template-rows: max-content max-content 3fr;
   align-items: center;
 }
 
-/* header {
-
-} */
+header {
+  justify-self: center;
+}
 
 main {
   background-color: var(--dark-background);
 
   align-self: start;
+}
+
+.logo {
+  width: 150px;
 }

@@ -1,0 +1,23 @@
+.tab {
+  display: block;
+
+  
+  background-color: var(--yellow-transparent);
+
+  padding: 1rem;
+
+  font-size: 1.7rem;
+}
+.tab:hover {
+  background-color: var(--dark-background);
+}
+
+.tab.active {
+  background-color: var(--dark-background);
+  color: blue;
+}
+
+menu {
+  display: flex;
+  justify-content: space-evenly;
+}

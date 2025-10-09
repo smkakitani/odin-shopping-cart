@@ -1,42 +1,106 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* CSS reset */
+*,
+*::before,
+*::after {
+  /* Use a more-intuitive box-sizing model */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  /* Add accessible line-height */
+  line-height: 1.5;
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
 }
 
-h1 {
+/* Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+/*  */
+
+
+
+:root {
+  --s: 15px; /* control the size*/
+  --c1: #422d10;
+  --c2: #1a1a1a;
+  --_g: #0000 83%,var(--c1) 85% 99%,#0000 101%;
+
+  --dark-background: rgba(15, 15, 15, 0.8);
+  --yellow-transparent: rgba(121, 83, 19, 0.75);
+
+
+
+
+  font-family: Indie Flower, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+
+  /* color-scheme: light dark; */
+  /* color: rgba(255, 255, 255, 0.87); */
+  background-color: #242424;
+
+  font-synthesis: none;
+  /* text-rendering: optimizeLegibility; */
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+
+}
+
+a {
+  /* font-weight: 500; */
+  color: white;
+  text-decoration: none;
+}
+/* a:hover {
+  color: #535bf2;
+} */
+
+body {
+  /* display: flex; */
+  /* place-items: center; */
+  /* min-width: 320px; */
+  min-height: 100vh;
+
+  background:
+    radial-gradient(27% 29% at right ,var(--_g)) calc(var(--s)/ 2) var(--s),
+    radial-gradient(27% 29% at left  ,var(--_g)) calc(var(--s)/-2) var(--s),
+    radial-gradient(29% 27% at top   ,var(--_g)) 0 calc(var(--s)/ 2),
+    radial-gradient(29% 27% at bottom,var(--_g)) 0 calc(var(--s)/-2)
+    var(--c2);
+  background-size: calc(2*var(--s)) calc(2*var(--s));
+}
+
+/* h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
+} */
 
 button {
-  border-radius: 8px;
+  /* border-radius: 8px; */
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
@@ -54,7 +118,11 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
+li {
+  list-style-type: none;
+}
+
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -65,4 +133,19 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+} */
+
+#root {
+  max-width: 1280px;
+  /* margin: 0 auto;
+  padding: 2rem; */
+  text-align: center;
+  min-height: 100vh;
+
+  color: white;  
+
+  display: grid;
+  grid-template-rows: max-content max-content 3fr;
+  align-items: center;
+  /* justify-self: center; */
 }

@@ -1,30 +1,41 @@
+import { House, ShoppingCart, Store } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router';
+
+// Styles
+import styles from '../styles/NavBar.module.css';
 
 
 const NavBar = ({ onMouseOverCart, onMouseOutCart }) => {
   const menuLink = [ 'home', 'store', 'cart' ];
+
+  /* function activeLink({ isActive }) {
+
+  } */
 
   return (
     <nav>
         <menu>
           {menuLink.map((item) => (
             <li key={item} >
-              {item === 'cart' ? (
-                <button
+              {item === 'cart' ? (                
+                <NavLink to={item} className={({ isActive }) => isActive ? `${styles.active} ${styles.tab}` : `${styles.tab}`}
                   onMouseOver={onMouseOverCart}
                   onMouseOut={onMouseOutCart}
                 >
-                  <NavLink to={item}>
+                  {/* <button className={styles.tab}
+                    // onMouseOver={onMouseOverCart}
+                    // onMouseOut={onMouseOutCart}
+                  > */}
+                    <ShoppingCart />
                     {item}
-                  </NavLink>
-                </button>
+                  {/* </button> */}
+                </NavLink>
               ) : (
-                <button>
-                  <NavLink to={item}>
-                    {item}
-                  </NavLink>
-                </button>
+                <NavLink to={item} className={({ isActive }) => isActive ? `${styles.active} ${styles.tab}` : `${styles.tab}`}>
+                  {item === 'store' ? <Store /> : <House />}
+                  {item}
+                </NavLink>
               )}              
             </li>
           ))}

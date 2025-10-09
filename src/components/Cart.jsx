@@ -1,6 +1,17 @@
+import { Trash2 } from "lucide-react";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { Link, useOutletContext } from "react-router";
+
+
+
+const Notification = ({ count }) => {
+  return (
+    <div>
+      {count}
+    </div>
+  );
+};
 
 
 
@@ -26,6 +37,7 @@ const CartView = ({ cart, cartTotal }) => {
 
 CartView.propTypes = {
   cart: PropTypes.array,
+  cartTotal: PropTypes.number,
 }
 
 
@@ -65,7 +77,7 @@ const Cart = (/* { cart } */) => {
                     <button type="button" onClick={() => onDecrease(item.id)}>-</button>
                     <p>{item.quantity}</p>
                     <button type="button" onClick={() => onIncrease(item.id)}>+</button>
-                    <button type="button" onClick={() => onRemoveItem(item.id)}>remove item</button>
+                    <button type="button" onClick={() => onRemoveItem(item.id)}><Trash2 /> remove item</button>
                   </div>
                 </article>
               </li>

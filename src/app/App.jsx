@@ -7,10 +7,13 @@ import NavBar from '../components/NavBar';
 import { CartView } from '../components/Cart';
 
 // Style
-import '../styles/App.css';
+import styles from '../styles/App.module.css';
 
 // API
-import useFakeStore from "../api/Api";
+import useFakeStore from '../api/Api';
+
+// Assets
+import catShopping from '../assets/shopping.png';
 
 
 
@@ -114,7 +117,15 @@ const App = () => {
 
   return (
     <>
-      <h1>My shopping cart</h1>
+      <header>
+        <img 
+          className={styles.logo}
+          src={catShopping} 
+          alt="cat shopping" 
+        
+        />
+        <h1>shopping cart</h1>
+      </header>
       <NavBar 
         onMouseOverCart={handleMouseOverCart} 
         onMouseOutCart={handleMouseOutCart}
@@ -123,9 +134,6 @@ const App = () => {
         <CartView cart={cart} cartTotal={cartTotal}/>,
         document.body
       )}
-      <p>
-        Hi
-      </p>
       <main>
         <Outlet context={{ 
           products, 
