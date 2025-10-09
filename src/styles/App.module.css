@@ -1,0 +1,25 @@
+#root {
+  max-width: 1280px;
+  /* margin: 0 auto;
+  padding: 2rem; */
+  text-align: center;
+  min-height: 100vh;
+
+  color: white;
+  
+  
+
+  display: grid;
+  grid-template-rows: max-content max-content 3fr;
+  align-items: center;
+}
+
+/* header {
+
+} */
+
+main {
+  background-color: var(--dark-background);
+
+  align-self: start;
+}
