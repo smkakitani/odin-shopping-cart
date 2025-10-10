@@ -1,6 +1,8 @@
-import { Link, useOutletContext } from "react-router";
-// import useFakeStore from "../api/Api";
-import PropTypes from "prop-types";
+import { Link, useOutletContext } from 'react-router';
+import PropTypes from 'prop-types';
+
+// Styles
+import styles from '../styles/Store.module.css';
 
 
 
@@ -21,10 +23,10 @@ const Store = ({
 
   // useFakeStore();
   return (
-    <div>
+    <div id={styles.storePage}>
       <h1>Store page</h1>
-      <Link to="/">Click here to go back</Link>
-      <div className="board">
+      {/* <Link to="/">Click here to go back</Link> */}
+      <div className={styles.board} >
         <ul>
           {products.map((product) => (
             <li key={product.id}>
@@ -57,7 +59,7 @@ const ItemCard = ({
 }) => {
   
   return (
-    <article className="product-item">
+    <article className={styles.productItem}>
       <img
         src={product.image}
         alt={product.title}
@@ -69,7 +71,7 @@ const ItemCard = ({
       <p className="product-price">
         {product.price.toLocaleString("en-US", { style: "currency", currency: "USD" })}
       </p>
-      <div>        
+      <div className={styles.buttons}>        
         <button type="button" onClick={() => onDecrease(product.id)}>-</button>
         <p>{product.quantity}</p>
         <button type="button" onClick={() => onIncrease(product.id)}>+</button>

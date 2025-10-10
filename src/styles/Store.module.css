@@ -1,0 +1,26 @@
+#storePage {
+  padding: 1rem;
+}
+
+.board ul {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: 1rem;
+}
+
+.productItem {
+  /* width: 100%; */
+}
+
+.buttons {
+  /* width: 100%; */
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: min-content 1fr;
+  row-gap: 0.5rem;
+}
+
+.buttons > button:last-of-type {
+  grid-column: 1 / 4;
+}
