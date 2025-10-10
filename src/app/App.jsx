@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 import { createPortal } from 'react-dom';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 // Component
 import NavBar from '../components/NavBar';
@@ -45,9 +45,11 @@ const createTestingProducts = () => {
 // Main App
 const App = () => {
   const [products, setProducts] = useState(createTestingProducts /* item */);
-  const [showCart, setShowCart] = useState(false); // state for CartView
+  const [showCart, setShowCart] = useState(true); // state for CartView
   // const { item, loading, error } = useFakeStore();
   const [cart, setCart] = useState([]);
+  const dialogRef = useRef(null);
+
   let cartTotal = 0;
   
   cart.forEach(item => {
@@ -58,12 +60,14 @@ const App = () => {
   });
 
   function handleMouseOverCart() {
-    setShowCart(true);
+    dialogRef.current.show();
+    // setShowCart(true);
     // console.log('mouse over');
   };
 
   function handleMouseOutCart() {
-    setShowCart(false);
+    dialogRef.current.close();
+    // setShowCart(false);
     // console.log('mouse out');
   };
   
@@ -118,20 +122,28 @@ const App = () => {
   return (
     <>
       <header>
-        <img 
-          className={styles.logo}
-          src={catShopping} 
-          alt="cat shopping" 
-        
-        />
+        <a href="https://www.flaticon.com/free-stickers/purchase" title="purchase stickers">
+          <img 
+            className={styles.logo}
+            src={catShopping} 
+            alt="cat shopping" 
+            title='Purchase stickers created by Stickers - Flaticon'        
+          />
+        </a>
         <h1>shopping cart</h1>
       </header>
       <NavBar 
         onMouseOverCart={handleMouseOverCart} 
         onMouseOutCart={handleMouseOutCart}
       />
-      {showCart && createPortal(
-        <CartView cart={cart} cartTotal={cartTotal}/>,
+      {/* showCart &&  */createPortal(
+        <CartView 
+          cart={cart} 
+          cartTotal={cartTotal}
+          openModal={showCart}
+          // closeModal={}
+          ref={dialogRef}
+        />,
         document.body
       )}
       <main>

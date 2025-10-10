@@ -1,7 +1,13 @@
-import { Trash2 } from "lucide-react";
 import PropTypes from "prop-types";
-import { useEffect } from "react";
 import { Link, useOutletContext } from "react-router";
+import { useEffect, useRef } from "react";
+
+// Icons
+import { Trash2 } from "lucide-react";
+
+// Styles
+import styles from "../styles/Cart.module.css";
+
 
 
 
@@ -15,9 +21,30 @@ const Notification = ({ count }) => {
 
 
 
-const CartView = ({ cart, cartTotal }) => {
+const CartView = ({ 
+  cart, 
+  cartTotal,
+  // openModal,
+  // closeModal,
+  ref,
+}) => {
+  // const dialogRef = useRef(null);
+
+  // useEffect(() => {
+  //   if (openModal) {
+  //     dialogRef.current.show();
+  //   } else {
+  //     dialogRef.current.close();
+  //   }
+  // }, []);
+
   return (
-    <dialog id="cart-view" style={{ display: 'flex' }}>
+    <dialog 
+      id={styles.cartView} 
+      ref={ref}
+      // ref={dialogRef} 
+      // onCancel={closeModal}
+    >
       <h3>My cart</h3>
       <ul>
         {cart.map(item => (
