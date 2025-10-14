@@ -6,7 +6,7 @@ import { NavLink } from 'react-router';
 import styles from '../styles/NavBar.module.css';
 
 
-const NavBar = ({ onMouseOverCart, onMouseOutCart }) => {
+const NavBar = ({ onMouseOverCart, onMouseOutCart, children }) => {
   const menuLink = [ 'home', 'store', 'cart' ];
 
   /* function activeLink({ isActive }) {
@@ -19,7 +19,7 @@ const NavBar = ({ onMouseOverCart, onMouseOutCart }) => {
           {menuLink.map((item) => (
             <li key={item} >
               {item === 'cart' ? (                
-                <NavLink to={item} className={({ isActive }) => isActive ? `${styles.active} ${styles.tab}` : `${styles.tab}`}
+                <NavLink to={item} className={({ isActive }) => isActive ? `${styles.active} ${styles.tab} ${styles.cart}` : `${styles.tab} ${styles.cart}`}
                   onMouseOver={onMouseOverCart}
                   onMouseOut={onMouseOutCart}
                 >
@@ -29,6 +29,7 @@ const NavBar = ({ onMouseOverCart, onMouseOutCart }) => {
                   > */}
                     <ShoppingCart />
                     {item}
+                    {children}
                   {/* </button> */}
                 </NavLink>
               ) : (

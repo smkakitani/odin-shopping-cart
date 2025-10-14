@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 // Styles
 import styles from '../styles/Store.module.css';
 
+// Assets
+import catShoes from '../assets/cat-shoes.png';
+
 
 
 const Store = ({ 
@@ -60,10 +63,10 @@ const ItemCard = ({
   
   return (
     <article className={styles.productItem}>
-      <img
-        src={product.image}
+      <img className={styles.imgItem}
+        src={product.image /* catShoes */}
         alt={product.title}
-        sizes="100px"
+        // sizes="100px"
       />
       <h4 className="product-title">
         {product.title}

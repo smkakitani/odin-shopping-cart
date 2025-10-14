@@ -14,6 +14,7 @@ import useFakeStore from '../api/Api';
 
 // Assets
 import catShopping from '../assets/shopping.png';
+import catShoes from '../assets/cat-shoes.png';
 
 
 
@@ -23,7 +24,7 @@ const mockData = {
   price: 6.66,
   description: 'mocking some description for API data',
   category: 'am I using it? @_@',
-  image: 'http://example.com',
+  image: catShoes,
   quantity: 1,
   // total: this.price * this.quantity,
 };
@@ -44,11 +45,11 @@ const createTestingProducts = () => {
 
 // Main App
 const App = () => {
-  const [products, setProducts] = useState(createTestingProducts /* item */);
-  const [showCart, setShowCart] = useState(true); // state for CartView
   // const { item, loading, error } = useFakeStore();
+  const [products, setProducts] = useState(createTestingProducts /* item */);
+  const [showCart, setShowCart] = useState(true); // state for CartView  
   const [cart, setCart] = useState([]);
-  const dialogRef = useRef(null);
+  // const dialogRef = useRef(null);
 
   let cartTotal = 0;
   
@@ -60,15 +61,15 @@ const App = () => {
   });
 
   function handleMouseOverCart() {
-    dialogRef.current.show();
-    // setShowCart(true);
-    // console.log('mouse over');
+    // dialogRef.current.show();
+    setShowCart(true);
+    console.log('mouse over');
   };
 
   function handleMouseOutCart() {
-    dialogRef.current.close();
+    // dialogRef.current.close();
     // setShowCart(false);
-    // console.log('mouse out');
+    console.log('mouse out');
   };
   
   function onDecreaseProduct(productId) {
@@ -133,10 +134,21 @@ const App = () => {
         <h1>shopping cart</h1>
       </header>
       <NavBar 
+        onMouseOverCart={handleMouseOverCart}
+        onMouseOutCart={handleMouseOutCart}
+      >
+        {showCart && <CartView 
+          cart={cart} 
+          cartTotal={cartTotal}
+          openModal={showCart}
+          // cartRef={dialogRef}        
+        />}
+      </NavBar>
+      {/* <NavBar 
         onMouseOverCart={handleMouseOverCart} 
         onMouseOutCart={handleMouseOutCart}
-      />
-      {/* showCart &&  */createPortal(
+      /> */}
+      {/* {showCart && createPortal(
         <CartView 
           cart={cart} 
           cartTotal={cartTotal}
@@ -145,7 +157,7 @@ const App = () => {
           ref={dialogRef}
         />,
         document.body
-      )}
+      )} */}
       <main>
         <Outlet context={{ 
           products, 

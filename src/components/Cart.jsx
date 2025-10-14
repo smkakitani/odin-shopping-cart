@@ -26,7 +26,7 @@ const CartView = ({
   cartTotal,
   // openModal,
   // closeModal,
-  ref,
+  // cartRef,
 }) => {
   // const dialogRef = useRef(null);
 
@@ -41,7 +41,7 @@ const CartView = ({
   return (
     <dialog 
       id={styles.cartView} 
-      ref={ref}
+      // ref={cartRef}
       // ref={dialogRef} 
       // onCancel={closeModal}
     >
@@ -49,15 +49,23 @@ const CartView = ({
       <ul>
         {cart.map(item => (
           <li key={item.id}>
-            <article>
-              <img sizes="100px" src={item.image} alt={item.title} />
+            <article className={styles.cartViewItem}>
+              <img 
+                className={styles.cartImg}
+                sizes="100px" 
+                src={item.image} 
+                alt={item.title} 
+              />
               <h4>{item.title}</h4>
               <p>{item.price?.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>
             </article>
           </li>
         ))}
       </ul>
-        <p>Total: {cartTotal.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>
+      <hr/>
+      <p>
+        Total: {cartTotal.toLocaleString("en-US", { style: "currency", currency: "USD" })}
+      </p>
     </dialog>
   );
 };
