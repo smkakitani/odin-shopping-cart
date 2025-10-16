@@ -22,10 +22,6 @@ const Store = ({
     onIncreaseProduct, 
     handleAddToCart, 
   } = useOutletContext();
-  
-  // if (loading) {
-
-  // }
 
   return (
     <div id={styles.storePage}>

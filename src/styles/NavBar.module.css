@@ -24,6 +24,7 @@ nav > menu > li:last-of-type {
   padding: 0.75rem;
 
   font-size: 1.7rem;
+  transition: background-color 300ms ease-in-out;
 }
 .tab:hover {
   background-color: var(--dark-background);

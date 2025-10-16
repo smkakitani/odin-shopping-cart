@@ -25,7 +25,6 @@ const mockData = {
   category: 'am I using it? @_@',
   image: catShoes,
   quantity: 1,
-  // total: this.price * this.quantity,
 };
 
 const createTestingProducts = () => {
@@ -45,10 +44,9 @@ const createTestingProducts = () => {
 // Main App
 const App = () => {
   const { item, loading, error } = useFakeStore();
-  const [products, setProducts] = useState(createTestingProducts /* item */);
-  const [showCart, setShowCart] = useState(true); // state for CartView  
+  const [products, setProducts] = useState(createTestingProducts);
+  const [showCart, setShowCart] = useState(false); // state for CartView  
   const [cart, setCart] = useState([]);
-  // const dialogRef = useRef(null);
 
   let cartTotal = 0;
   
@@ -72,7 +70,7 @@ const App = () => {
   };
 
   function handleMouseOutCart() {
-    // setShowCart(false);
+    setShowCart(false);
     // console.log('mouse out');
   };
   
@@ -124,8 +122,6 @@ const App = () => {
     setCart(cart.filter(item => item.id !== productId));
   }
 
-
-
   return (
     <>
       <header>
@@ -137,7 +133,7 @@ const App = () => {
             title='Purchase stickers created by Stickers - Flaticon'        
           />
         </a>
-        <h1>shopping cart</h1>
+        <h1>&#128618; shopping cart &#128618;</h1>
       </header>
       <NavBar 
         onMouseOverCart={handleMouseOverCart}

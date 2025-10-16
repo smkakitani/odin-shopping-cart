@@ -53,6 +53,8 @@ input, button, textarea, select {
   --yellow-transparent: rgba(121, 83, 19, 0.75);
   --yellow-opaque: rgba(121, 83, 19);
 
+  --scrollbar-width: calc(100vw - 100%);
+
 
 
 
@@ -142,6 +144,7 @@ li {
   /* width: clamp(600px, 80vw, 1280px); */
   max-width: 1280px;
   width: 80vw;
+  /* width: calc(80vw - var(--scrollbar-width)); */
   /* margin: 0 auto;
   padding: 2rem; */
   text-align: center;

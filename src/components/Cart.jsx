@@ -23,28 +23,13 @@ const Notification = ({ count }) => {
 const CartView = ({ 
   cart, 
   cartTotal,
-  // openModal,
-  // closeModal,
-  // cartRef,
   showCart,
 }) => {
-  // const dialogRef = useRef(null);
-
-  // useEffect(() => {
-  //   if (openModal) {
-  //     dialogRef.current.show();
-  //   } else {
-  //     dialogRef.current.close();
-  //   }
-  // }, []);
 
   return (
     <dialog 
       id={styles.cartView} 
       className={showCart ? styles.showCart : ''}
-      // ref={cartRef}
-      // ref={dialogRef} 
-      // onCancel={closeModal}
     >
       <h3>My cart</h3>
       <ul>
@@ -75,6 +60,7 @@ const CartView = ({
 CartView.propTypes = {
   cart: PropTypes.array,
   cartTotal: PropTypes.number,
+  showCart: PropTypes.bool,
 }
 
 
@@ -89,41 +75,45 @@ const Cart = () => {
   } = useOutletContext();
 
   return (
-    <div>
+    <div id={styles.shoppingCart} >
       <h1>Cart</h1>
-      <Link to="/">Click here to go back</Link>
-      <div className="shopping-cart">
-        <h2>my shopping cart</h2>
-        <div>
-          <ul>
-            {cart.map((item) => (
-              <li key={item.id}>
-                <article>
-                  <img 
-                    sizes="100px" 
-                    src={item.image} 
-                    alt={item.title} 
+      {/* <Link to="/">Click here to go back</Link> */}
+      {/* <h2>my shopping cart</h2> */}
+      <div>
+        <ul>
+          {cart.map((item) => (
+            <li key={item.id}>
+              <article className={styles.cartItem}>
+                <div className={styles.imgContainerCart}>
+                  <img
+                    src={item.image}
+                    alt={item.title}
                   />
-                  <h4 className="product-title">
-                    {item.title}
-                  </h4>
-                  <p className="product-price">
-                    {item.price?.toLocaleString("en-US", { style: "currency", currency: "USD" })}
-                  </p>
-                  <div>
-                    <button type="button" onClick={() => onDecrease(item.id)}>-</button>
-                    <p>{item.quantity}</p>
-                    <button type="button" onClick={() => onIncrease(item.id)}>+</button>
-                    <button type="button" onClick={() => onRemoveItem(item.id)}><Trash2 /> remove item</button>
-                  </div>
-                </article>
-              </li>
-            ))}
-          </ul>
-          <p className="cart-total">
-            Estimated total: {cartTotal?.toLocaleString("en-US", { style: "currency", currency: "USD" })}
-          </p>
-        </div>
+                </div>
+                <h4 className={styles.productTitle}>
+                  {item.title}
+                </h4>
+                <p className={styles.productPrice}>
+                  {item.price?.toLocaleString("en-US", { style: "currency", currency: "USD" })}
+                </p>
+                <div className={styles.buttons}>
+                  <button type="button" onClick={() => onDecrease(item.id)}>-</button>
+                  <p>{item.quantity}</p>
+                  <button type="button" onClick={() => onIncrease(item.id)}>+</button>
+                  <button type="button" onClick={() => onRemoveItem(item.id)}
+                    className={styles.removeBtn}  
+                  >
+                    <Trash2 />remove item
+                  </button>
+                </div>
+              </article>
+            </li>
+          ))}
+        </ul>
+        <hr/>
+        <p className="cart-total">
+          Estimated total: {cartTotal?.toLocaleString("en-US", { style: "currency", currency: "USD" })}
+        </p>
       </div>
     </div>
   );

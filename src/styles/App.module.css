@@ -19,20 +19,31 @@ header {
   height: 15vh;
 
   justify-self: center;
+  /* justify-items: center; */
 }
 
+header > a {
+  justify-items: center;
+}
+
+.logo {
+  max-width: 120px;
+
+  justify-self: center;
+}
+
+
 main {
-  background-color: var(--dark-background);
+  width: 100%;
   /* min-width: 80vw; */
 
   align-self: start;
 
   /* overflow-y: scroll; */
+  background-color: var(--dark-background);
 }
 
-.logo {
-  width: 120px;
-}
+
 
 main h1 {
   padding: 1rem 0;

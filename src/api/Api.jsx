@@ -53,7 +53,7 @@ const useFakeStore = () => {
     fetchData();
   }, []);
 
-  console.log('calling API???');
+  // console.log('calling API???');
   return { item, loading, error };
 };
 
