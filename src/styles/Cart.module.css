@@ -4,7 +4,7 @@
 
 #cartView {
   position: absolute;
-  left: 100%;
+  left: -15%;
   top: 100%;
 
   /* min-width: max-content; */
@@ -38,21 +38,51 @@
 .cartViewItem {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  /* flex-wrap: wrap; */
 
   padding: 0.3rem;
+
+  font-size: 1.25rem;
 
   /* background-color: rgb(121, 83, 19); */
   background-color: rgba(155, 111, 34, 0.4);
 }
 
+.imgContainer {
+  order: -1;
+
+  background-color: #fff;
+
+  min-width: 80px;
+  
+  justify-items: center;
+  align-content: center;
+
+  aspect-ratio: 1;
+}
+
 .cartImg {
   max-width: 75px;
-  order: -1;
+  max-height: 75px;
+  /* order: -1; */
+
+  /* background-color: #fff; */
+}
+
+.cartViewItem > h4 {
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 #cartView > hr {
-  color: rgb(121, 83, 19);
+  /* color: rgb(121, 83, 19); */
+  border: 0;
+  height: 2px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
 .cartViewItem > h4 {

@@ -51,12 +51,13 @@ const CartView = ({
         {cart.map(item => (
           <li key={item.id}>
             <article className={styles.cartViewItem}>
-              <img 
-                className={styles.cartImg}
-                sizes="100px" 
-                src={item.image} 
-                alt={item.title} 
-              />
+              <div className={styles.imgContainer}>
+                <img
+                  className={styles.cartImg}
+                  src={item.image}
+                  alt={item.title}
+                />
+              </div>
               <h4>{item.title}</h4>
               <p>{item.price?.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>
             </article>

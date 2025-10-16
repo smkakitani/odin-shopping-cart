@@ -46,7 +46,7 @@ const createTestingProducts = () => {
 const App = () => {
   const { item, loading, error } = useFakeStore();
   const [products, setProducts] = useState(createTestingProducts /* item */);
-  const [showCart, setShowCart] = useState(false); // state for CartView  
+  const [showCart, setShowCart] = useState(true); // state for CartView  
   const [cart, setCart] = useState([]);
   // const dialogRef = useRef(null);
 
@@ -62,17 +62,18 @@ const App = () => {
   useEffect(() => {
     if (item) {
       setProducts(item);
+      console.log('app effect');
     }
   }, [item]);
 
   function handleMouseOverCart() {
-    // setShowCart(true);
-    console.log('mouse over');
+    setShowCart(true);
+    // console.log('mouse over');
   };
 
   function handleMouseOutCart() {
     // setShowCart(false);
-    console.log('mouse out');
+    // console.log('mouse out');
   };
   
   function onDecreaseProduct(productId) {
@@ -141,11 +142,11 @@ const App = () => {
       <NavBar 
         onMouseOverCart={handleMouseOverCart}
         onMouseOutCart={handleMouseOutCart}
-        // cartComp={<CartView 
-        //   cart={cart} 
-        //   cartTotal={cartTotal}
-        //   showCart={showCart}
-        // />}
+        cartComp={<CartView 
+          cart={cart} 
+          cartTotal={cartTotal}
+          showCart={showCart}
+        />}
       >
         {/* <CartView 
           cart={cart} 
