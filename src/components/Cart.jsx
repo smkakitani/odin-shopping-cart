@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { Link, useOutletContext } from "react-router";
-import { useEffect, useRef } from "react";
 
 // Icons
 import { Trash2 } from "lucide-react";
@@ -27,6 +26,7 @@ const CartView = ({
   // openModal,
   // closeModal,
   // cartRef,
+  showCart,
 }) => {
   // const dialogRef = useRef(null);
 
@@ -41,6 +41,7 @@ const CartView = ({
   return (
     <dialog 
       id={styles.cartView} 
+      className={showCart ? styles.showCart : ''}
       // ref={cartRef}
       // ref={dialogRef} 
       // onCancel={closeModal}
@@ -77,7 +78,7 @@ CartView.propTypes = {
 
 
 
-const Cart = (/* { cart } */) => {
+const Cart = () => {
   const { 
     onDecreaseProduct: onDecrease,
     onIncreaseProduct: onIncrease,

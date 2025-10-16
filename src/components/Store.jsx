@@ -23,15 +23,17 @@ const Store = ({
     handleAddToCart, 
   } = useOutletContext();
   
+  // if (loading) {
 
-  // useFakeStore();
+  // }
+
   return (
     <div id={styles.storePage}>
       <h1>Store page</h1>
       {/* <Link to="/">Click here to go back</Link> */}
       <div className={styles.board} >
         <ul>
-          {products.map((product) => (
+          {products && products.map((product) => (
             <li key={product.id}>
               <ItemCard 
                 product={product}
@@ -63,15 +65,17 @@ const ItemCard = ({
   
   return (
     <article className={styles.productItem}>
-      <img className={styles.imgItem}
-        src={product.image /* catShoes */}
-        alt={product.title}
-        // sizes="100px"
-      />
-      <h4 className="product-title">
+      <div className={styles.imgContainer}>
+        <img className={styles.imgItem}
+          src={product.image /* catShoes */}
+          alt={product.title}
+          // sizes="100px"
+        />
+      </div>
+      <h4 className={styles.productTitle}>
         {product.title}
       </h4>
-      <p className="product-price">
+      <p className={styles.productPrice}>
         {product.price.toLocaleString("en-US", { style: "currency", currency: "USD" })}
       </p>
       <div className={styles.buttons}>        

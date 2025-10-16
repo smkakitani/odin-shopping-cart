@@ -6,7 +6,7 @@ import { NavLink } from 'react-router';
 import styles from '../styles/NavBar.module.css';
 
 
-const NavBar = ({ onMouseOverCart, onMouseOutCart, children }) => {
+const NavBar = ({ onMouseOverCart, onMouseOutCart, /* children *//* cartComp */ }) => {
   const menuLink = [ 'home', 'store', 'cart' ];
 
   /* function activeLink({ isActive }) {
@@ -17,8 +17,12 @@ const NavBar = ({ onMouseOverCart, onMouseOutCart, children }) => {
     <nav>
         <menu>
           {menuLink.map((item) => (
-            <li key={item} >
-              {item === 'cart' ? (                
+            <li key={item} 
+              // onMouseOver={onMouseOverCart}
+              // onMouseOut={onMouseOutCart}
+            >
+              {item === 'cart' ? (    
+                <>            
                 <NavLink to={item} className={({ isActive }) => isActive ? `${styles.active} ${styles.tab} ${styles.cart}` : `${styles.tab} ${styles.cart}`}
                   onMouseOver={onMouseOverCart}
                   onMouseOut={onMouseOutCart}
@@ -29,9 +33,11 @@ const NavBar = ({ onMouseOverCart, onMouseOutCart, children }) => {
                   > */}
                     <ShoppingCart />
                     {item}
-                    {children}
+                    {/* {children} */}
                   {/* </button> */}
                 </NavLink>
+                {/* {cartComp} */}
+                </>
               ) : (
                 <NavLink to={item} className={({ isActive }) => isActive ? `${styles.active} ${styles.tab}` : `${styles.tab}`}>
                   {item === 'store' ? <Store /> : <House />}

@@ -13,16 +13,29 @@
 } */
 
 header {
+  position: sticky;
+  top: 0;
+
+  height: 15vh;
+
   justify-self: center;
 }
 
 main {
   background-color: var(--dark-background);
-  min-width: 100%;
+  /* min-width: 80vw; */
 
   align-self: start;
+
+  /* overflow-y: scroll; */
 }
 
 .logo {
   width: 120px;
+}
+
+main h1 {
+  padding: 1rem 0;
+
+  text-shadow: #FFF 0px 0px 5px, #795313 0px 0px 10px, #FFF 0px 0px 15px, #795313 0px 0px 20px, #795313 0px 0px 30px, #795313 0px 0px 40px, #795313 0px 0px 50px, #795313 0px 0px 75px;
 }

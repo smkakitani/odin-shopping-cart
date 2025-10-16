@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router';
-import { createPortal } from 'react-dom';
-import { useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Component
 import NavBar from '../components/NavBar';
@@ -45,9 +44,9 @@ const createTestingProducts = () => {
 
 // Main App
 const App = () => {
-  // const { item, loading, error } = useFakeStore();
+  const { item, loading, error } = useFakeStore();
   const [products, setProducts] = useState(createTestingProducts /* item */);
-  const [showCart, setShowCart] = useState(true); // state for CartView  
+  const [showCart, setShowCart] = useState(false); // state for CartView  
   const [cart, setCart] = useState([]);
   // const dialogRef = useRef(null);
 
@@ -60,14 +59,18 @@ const App = () => {
 
   });
 
+  useEffect(() => {
+    if (item) {
+      setProducts(item);
+    }
+  }, [item]);
+
   function handleMouseOverCart() {
-    // dialogRef.current.show();
-    setShowCart(true);
+    // setShowCart(true);
     console.log('mouse over');
   };
 
   function handleMouseOutCart() {
-    // dialogRef.current.close();
     // setShowCart(false);
     console.log('mouse out');
   };
@@ -120,6 +123,8 @@ const App = () => {
     setCart(cart.filter(item => item.id !== productId));
   }
 
+
+
   return (
     <>
       <header>
@@ -136,13 +141,23 @@ const App = () => {
       <NavBar 
         onMouseOverCart={handleMouseOverCart}
         onMouseOutCart={handleMouseOutCart}
+        // cartComp={<CartView 
+        //   cart={cart} 
+        //   cartTotal={cartTotal}
+        //   showCart={showCart}
+        // />}
       >
-        {showCart && <CartView 
+        {/* <CartView 
           cart={cart} 
           cartTotal={cartTotal}
           openModal={showCart}
-          // cartRef={dialogRef}        
-        />}
+          showCart={showCart}
+        /> */}
+        {/* {showCart && <CartView 
+          cart={cart} 
+          cartTotal={cartTotal}
+          openModal={showCart}      
+        />} */}
       </NavBar>
       {/* <NavBar 
         onMouseOverCart={handleMouseOverCart} 

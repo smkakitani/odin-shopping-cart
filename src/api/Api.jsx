@@ -26,7 +26,7 @@ const useFakeStore = () => {
         }
         let data = await response.json();
 
-        const updatedData = data.slice(0, 10).map(item => {
+        const updatedData = data.slice(0, 9).map(item => {
           return {
             id: crypto.randomUUID(),
             title: item.title,
@@ -48,10 +48,12 @@ const useFakeStore = () => {
       }
     };
 
+    console.log('inside useeffect o_o API');
+
     fetchData();
   }, []);
 
-  console.log(item);
+  console.log('calling API???');
   return { item, loading, error };
 };
 
