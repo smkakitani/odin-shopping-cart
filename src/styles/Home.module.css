@@ -1,0 +1,14 @@
+#home {
+  padding: 1rem;
+}
+
+.catContainer {
+  justify-items: center;
+
+  padding: 5rem 0;
+}
+
+.catContainer > img {
+  max-width: 100%;
+  height: auto;
+}

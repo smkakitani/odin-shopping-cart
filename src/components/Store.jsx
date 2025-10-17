@@ -9,13 +9,7 @@ import catShoes from '../assets/cat-shoes.png';
 
 
 
-const Store = ({ 
-  /* products, */
-  /* onDecreaseProduct, */
-  /* onIncreaseProduct, */
-  /* handleCartProduct, */
-
-}) => {
+const Store = () => {
   const { 
     products, 
     onDecreaseProduct, 
