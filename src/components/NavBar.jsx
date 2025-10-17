@@ -1,40 +1,33 @@
-import { House, ShoppingCart, Store } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router';
 
 // Styles
 import styles from '../styles/NavBar.module.css';
 
+// Lucide Icons
+import { House, ShoppingCart, Store } from 'lucide-react';
 
-const NavBar = ({ onMouseOverCart, onMouseOutCart, /* children */cartComp }) => {
+
+const NavBar = ({ 
+  onMouseOverCart, 
+  onMouseOutCart, 
+  cartComp, 
+}) => {
   const menuLink = [ 'home', 'store', 'cart' ];
-
-  /* function activeLink({ isActive }) {
-
-  } */
 
   return (
     <nav>
         <menu>
           {menuLink.map((item) => (
-            <li key={item} 
-              // onMouseOver={onMouseOverCart}
-              // onMouseOut={onMouseOutCart}
-            >
+            <li key={item} >
               {item === 'cart' ? (    
                 <>            
                 <NavLink to={item} className={({ isActive }) => isActive ? `${styles.active} ${styles.tab} ${styles.cart}` : `${styles.tab} ${styles.cart}`}
                   onMouseOver={onMouseOverCart}
                   onMouseOut={onMouseOutCart}
                 >
-                  {/* <button className={styles.tab}
-                    // onMouseOver={onMouseOverCart}
-                    // onMouseOut={onMouseOutCart}
-                  > */}
-                    <ShoppingCart />
-                    {item}
-                    {/* {children} */}
-                  {/* </button> */}
+                  <ShoppingCart />
+                  {item}                    
                 </NavLink>
                 {cartComp}
                 </>

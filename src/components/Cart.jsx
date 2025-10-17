@@ -1,12 +1,11 @@
 import PropTypes from "prop-types";
-import { Link, useOutletContext } from "react-router";
+import { useOutletContext } from "react-router";
 
 // Icons
 import { Trash2 } from "lucide-react";
 
 // Styles
 import styles from "../styles/Cart.module.css";
-
 
 
 
@@ -77,8 +76,6 @@ const Cart = () => {
   return (
     <div id={styles.shoppingCart} >
       <h1>Cart</h1>
-      {/* <Link to="/">Click here to go back</Link> */}
-      {/* <h2>my shopping cart</h2> */}
       <div>
         <ul>
           {cart.map((item) => (

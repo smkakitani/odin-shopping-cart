@@ -1,5 +1,3 @@
-import { Link } from "react-router";
-
 // Styles
 import styles from '../styles/Home.module.css';
 

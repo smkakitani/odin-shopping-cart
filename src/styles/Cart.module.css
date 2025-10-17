@@ -7,7 +7,6 @@
   left: -15%;
   top: 100%;
 
-  /* min-width: max-content; */
   width: 22rem;
   border: none;
 
@@ -19,9 +18,7 @@
 
   font-size: 1.5rem;
 
-  /* background-color: var(--dark-background); */
   background-color: var(--yellow-transparent);
-  /* box-shadow: 0px 0px 5px 5px rgba(121,83,19,0.75); */
   box-shadow: 0px 0px 5px 5px rgba(19, 19, 19, 0.5);
 }
 
@@ -40,13 +37,11 @@
   flex-direction: row;
   gap: 0.75rem;
   align-items: center;
-  /* flex-wrap: wrap; */
 
   padding: 0.3rem;
 
   font-size: 1.25rem;
 
-  /* background-color: rgb(121, 83, 19); */
   background-color: rgba(155, 111, 34, 0.4);
 }
 
@@ -66,9 +61,6 @@
 .cartImg {
   max-width: 75px;
   max-height: 75px;
-  /* order: -1; */
-
-  /* background-color: #fff; */
 }
 
 .cartViewItem > h4 {
@@ -79,7 +71,6 @@
 }
 
 #cartView > hr {
-  /* color: rgb(121, 83, 19); */
   border: 0;
   height: 2px;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
@@ -124,7 +115,6 @@
 
 .imgContainerCart {
   max-width: 120px;
-  /* max-height: 120px; */
 
   padding: 0.5rem;
   
@@ -137,25 +127,16 @@
 }
 
 .imgContainerCart > img {
-  /* order: -1; */
   object-fit: scale-down;
 
   width: 100%;
   height: 100%;
 
   max-width: fit-content;
-
-  /* max-height: 100px;
-  max-width: 100px; */
 }
 
 .productTitle {
   text-align: start;
-
-  /* text-wrap: nowrap;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden; */
 }
 
 .productPrice {
@@ -168,8 +149,6 @@
   grid-template-rows: 1fr 1fr;
   row-gap: 0.5rem;
   align-items: center;
-
-  /* padding: 0 2.5rem; */
 }
 
 .buttons > button:not(:last-of-type) {

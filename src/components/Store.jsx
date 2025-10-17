@@ -1,11 +1,10 @@
-import { Link, useOutletContext } from 'react-router';
+import { useOutletContext } from 'react-router';
 import PropTypes from 'prop-types';
 
 // Styles
 import styles from '../styles/Store.module.css';
 
 // Assets
-import catShoes from '../assets/cat-shoes.png';
 
 
 
@@ -20,7 +19,6 @@ const Store = () => {
   return (
     <div id={styles.storePage}>
       <h1>Store page</h1>
-      {/* <Link to="/">Click here to go back</Link> */}
       <div className={styles.board} >
         <ul>
           {products && products.map((product) => (
@@ -57,9 +55,8 @@ const ItemCard = ({
     <article className={styles.productItem}>
       <div className={styles.imgContainer}>
         <img className={styles.imgItem}
-          src={product.image /* catShoes */}
+          src={product.image}
           alt={product.title}
-          // sizes="100px"
         />
       </div>
       <h4 className={styles.productTitle}>

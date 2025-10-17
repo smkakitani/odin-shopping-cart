@@ -13,25 +13,23 @@ nav > menu > li:last-of-type {
 
 .tab {
   display: block;
-  /* min-width: 100px; */
-  /* flex: 1 1 auto; */
+
   justify-items: center;
 
   border: 3px solid transparent;
-  
-  background-color: var(--yellow-transparent);
 
   padding: 0.75rem;
 
   font-size: 1.7rem;
   transition: background-color 300ms ease-in-out;
-}
-.tab:hover {
-  background-color: var(--dark-background);
-}
 
+  background-color: var(--yellow-transparent);
+}
+.tab:hover,
 .tab.active {
   background-color: var(--dark-background);
+}
+.tab.active {
   color: var(--yellow-transparent);
 
   border-top: 3px solid var(--yellow-transparent);

@@ -54,24 +54,21 @@ const App = () => {
     const value = item.price * item.quantity;
     const roundValue = (Math.round(value * 100)/100)
     cartTotal += roundValue;
-
   });
 
   useEffect(() => {
     if (item) {
       setProducts(item);
-      console.log('app effect');
+      // console.log('app effect');
     }
   }, [item]);
 
   function handleMouseOverCart() {
     setShowCart(true);
-    // console.log('mouse over');
   };
 
   function handleMouseOutCart() {
     setShowCart(false);
-    // console.log('mouse out');
   };
   
   function onDecreaseProduct(productId) {
@@ -144,32 +141,7 @@ const App = () => {
           showCart={showCart}
         />}
       >
-        {/* <CartView 
-          cart={cart} 
-          cartTotal={cartTotal}
-          openModal={showCart}
-          showCart={showCart}
-        /> */}
-        {/* {showCart && <CartView 
-          cart={cart} 
-          cartTotal={cartTotal}
-          openModal={showCart}      
-        />} */}
       </NavBar>
-      {/* <NavBar 
-        onMouseOverCart={handleMouseOverCart} 
-        onMouseOutCart={handleMouseOutCart}
-      /> */}
-      {/* {showCart && createPortal(
-        <CartView 
-          cart={cart} 
-          cartTotal={cartTotal}
-          openModal={showCart}
-          // closeModal={}
-          ref={dialogRef}
-        />,
-        document.body
-      )} */}
       <main>
         <Outlet context={{ 
           products, 
