@@ -9,14 +9,6 @@ const useFakeStore = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // setLoading(true);
-    // fetch('https://fakestoreapi.com/products', { mode: 'cors' })
-    //   .then((response) => {
-    //     if (!response.ok) {
-    //       throw new Error(response.status);
-    //     }
-    //     return response.json();
-    //   })
     const fetchData = async () => {
       try {
         const response = await fetch('https://fakestoreapi.com/products', { mode: 'cors' });
@@ -32,7 +24,6 @@ const useFakeStore = () => {
             title: item.title,
             price: item.price,
             description: item.description,
-            /* category: item.category, */
             image: item.image,
             quantity: 1,
           }
@@ -48,12 +39,9 @@ const useFakeStore = () => {
       }
     };
 
-    console.log('inside useeffect o_o API');
-
     fetchData();
   }, []);
 
-  // console.log('calling API???');
   return { item, loading, error };
 };
 

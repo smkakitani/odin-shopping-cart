@@ -9,16 +9,6 @@ import styles from "../styles/Cart.module.css";
 
 
 
-const Notification = ({ count }) => {
-  return (
-    <div>
-      {count}
-    </div>
-  );
-};
-
-
-
 const CartView = ({ 
   cart, 
   cartTotal,
